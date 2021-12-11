@@ -1,0 +1,246 @@
+{% extends 'base.html' %}
+
+{% block Home %}active{% endblock %}
+
+{% block content %}
+
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+        .typewriter h1 {
+            overflow: hidden;
+            /* Ensures the content is not revealed until the animation */
+            border-right: .15em solid orange;
+            /* The typwriter cursor */
+            white-space: nowrap;
+            /* Keeps the content on a single line */
+            margin: 0 auto;
+            /* Gives that scrolling effect as the typing happens */
+            animation:
+                typing 3.5s steps(40, end),
+                blink-caret .75s step-end infinite;
+        }
+
+        /* The typing effect */
+        @keyframes typing {
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
+        }
+
+        /* The typewriter cursor effect */
+        @keyframes blink-caret {
+
+            from,
+            to {
+                border-color: transparent
+            }
+
+            50% {
+                border-color: black;
+            }
+        }
+    </style>
+
+</head>
+
+<main role="main">
+    <section class="jumbotron text-center" style="background-color: rgba(211, 213, 240, 0.2);">
+        <div class="typewriter">
+            <h1>My-Animation-Web</h1>
+            <p class="lead text-muted">Join my self-taught journey in full-stack software development
+            <p>
+                <a href="{% url 'blog' %}" class="btn btn-primary my-2">Read My Blog</a>
+                <a href="{% url 'contact' %}" class="btn btn-secondary my-2">Employ Ben Math</a>
+            </p>
+        </div>
+    </section>
+
+
+    <div class="container">
+
+        <div class="row">
+            {% for i in all_categories %}
+            <div class="col-md-4" style="background-color: rgba(211, 213, 240, 0.2); margin-top:16px;border: solid #EEFFBC 2px;!important">
+                <img class="card-img-top" src="/static/images/{{i.image}}" alt="Card image cap">
+                <div class="card-body" style="background-color: rgba(211, 213, 240, 0.2);">
+                    <h5 class="card-title">{{i.name}}</h5>
+                    <p class="card-text">{{i.discription | truncatechars:100}}</p>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                        </div>
+                        <small class="text-muted">{{i.date_added.date}}</small>
+                    </div>
+                </div>
+
+            </div>
+            {% endfor %}
+
+
+<!--            <div class="col-md-4">-->
+<!--                <div class="card mb-4 box-shadow">-->
+<!--                    <img class="card-img-top" src="static/images/java.png" alt="Card image cap">-->
+<!--                    <div class="card-body">-->
+<!--                        <p class="card-text">-->
+<!--                            This is a wider card with supporting text below as a natural lead-in to-->
+<!--                            additional content. This content is a little bit longer.</p>-->
+<!--                        <div class="d-flex justify-content-between align-items-center">-->
+<!--                            <div class="btn-group">-->
+<!--                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>-->
+<!--                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+<!--                            </div>-->
+<!--                            <small class="text-muted">9 mins</small>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-4">-->
+<!--                <div class="card mb-4 box-shadow">-->
+<!--                    <img class="card-img-top" src="static/images/django.png" alt="Card image cap">-->
+<!--                    <div class="card-body">-->
+<!--                        <p class="card-text">-->
+<!--                            This is a wider card with supporting text below as a natural lead-in to-->
+<!--                            additional content. This content is a little bit longer.</p>-->
+<!--                        <div class="d-flex justify-content-between align-items-center">-->
+<!--                            <div class="btn-group">-->
+<!--                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>-->
+<!--                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+<!--                            </div>-->
+<!--                            <small class="text-muted">9 mins</small>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-4">-->
+<!--                <div class="card mb-4 box-shadow">-->
+<!--                    <img class="card-img-top" src="static/images/HTML.png" alt="Card image cap">-->
+<!--                    <div class="card-body">-->
+<!--                        <p class="card-text">-->
+<!--                            This is a wider card with supporting text below as a natural lead-in to-->
+<!--                            additional content. This content is a little bit longer.</p>-->
+<!--                        <div class="d-flex justify-content-between align-items-center">-->
+<!--                            <div class="btn-group">-->
+<!--                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>-->
+<!--                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+<!--                            </div>-->
+<!--                            <small class="text-muted">9 mins</small>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-4">-->
+<!--                <div class="card mb-4 box-shadow">-->
+<!--                    <img class="card-img-top" src="static/images/CSS.png" alt="Card image cap">-->
+<!--                    <div class="card-body">-->
+
+<!--                        <p class="card-text">-->
+<!--                            This is a wider card with supporting text below as a natural lead-in to-->
+<!--                            additional content. This content is a little bit longer.</p>-->
+
+<!--                        <div class="d-flex justify-content-between align-items-center">-->
+<!--                            <div class="btn-group">-->
+<!--                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>-->
+<!--                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+<!--                            </div>-->
+<!--                            <small class="text-muted">9 mins</small>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-4">-->
+<!--                <div class="card mb-4 box-shadow">-->
+<!--                    <img class="card-img-top" src="static/images/Docker2.png" alt="Card image cap">-->
+<!--                    <div class="card-body">-->
+
+<!--                        <p class="card-text">-->
+
+<!--                            This is a wider card with supporting text below as a natural lead-in to-->
+<!--                            additional content. This content is a little bit longer.</p>-->
+
+<!--                        <div class="d-flex justify-content-between align-items-center">-->
+<!--                            <div class="btn-group">-->
+<!--                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>-->
+<!--                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+<!--                            </div>-->
+<!--                            <small class="text-muted">9 mins</small>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+        </div>
+
+        <!--
+
+    <h2>My favorite languages:</h2>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        
+       
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="static/images/python.png" alt="python"
+                style="width:30%;height:30%;margin:auto;display:block;">
+            </div>
+            
+            <div class="item">
+                <img src="static/images/django.png" alt="django"
+                style="width:30%;height:30%;margin:auto;display:block;">
+            </div>
+            
+            <div class="item">
+                <img src="static/images/java.png" alt="java"
+                style="width:30%;height:30%;margin:auto;display:block;">
+            </div>
+            <div class="item">
+                <img src="static/images/RDBMS.png" alt="RDBMS"
+                style="width:30%;height:30%;margin:auto;display:block;">
+            </div>
+            <div class="item">
+                <img src="static/images/Docker.png" alt="Docker"
+                style="width:30%;height:30%;margin:auto;display:block;">
+            </div>
+            <div class="item">
+                <img src="static/images/HTML.png" alt="HTML"
+                style="width:30%;height:30%;margin:auto;display:block;">
+            </div>
+        </div>
+        
+        
+    -->
+    </div>
+
+
+
+
+</main>
+
+
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="../../../../assets/js/vendor/popper.min.js"></script>
+<script src="../../../../dist/js/bootstrap.min.js"></script>
+<!--<script src="../../../../assets/js/vendor/holder.min.js"></script>-->
+
+
+{% endblock %}
